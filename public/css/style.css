@@ -8,7 +8,7 @@ body {
 }
 
 .btn-success {
-  background-color: #F50;
+  background-color: #F51;
   background-image: -moz-linear-gradient(top, #F50, #F50);
   background-image: -ms-linear-gradient(top, #F50, #F50);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
