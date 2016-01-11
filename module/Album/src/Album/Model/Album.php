@@ -18,6 +18,7 @@
 			$this->id     = (!empty($data['id'])) ? $data['id'] : null;
 			$this->artist = (!empty($data['artist'])) ? $data['artist'] : null;
 			$this->title  = (!empty($data['title'])) ? $data['title'] : null;
+			//$this->id_user  = (!empty($data['id_user'])) ? $data['id_user'] : null;
 		}
 		
 		public function getArrayCopy()
@@ -82,6 +83,16 @@
 								),
 						),
 				));
+				
+				/*
+				$inputFilter->add(array(
+						'name'     => 'id_user',
+						'required' => true,
+						'filters'  => array(
+								array('id_user' => 'Int'),
+						),
+				));
+				*/
 		
 				$this->inputFilter = $inputFilter;
 			}

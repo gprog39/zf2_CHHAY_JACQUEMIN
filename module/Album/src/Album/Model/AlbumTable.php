@@ -18,6 +18,16 @@
 			$resultSet = $this->tableGateway->select();
 			return $resultSet;
 		}
+
+
+		public function findByUser($id_user)
+		{
+			
+			//print_r($user)
+			$resultSet = $this->tableGateway->select($where = "id_user = $id_user");
+			
+			return $resultSet;
+		}
 	
 		public function getAlbum($id)
 		{
@@ -35,6 +45,7 @@
 			$data = array(
 					'artist' => $album->artist,
 					'title'  => $album->title,
+					'id_user'  => $album->id_user,
 			);
 	
 			$id = (int) $album->id;
@@ -52,5 +63,16 @@
 		public function deleteAlbum($id)
 		{
 			$this->tableGateway->delete(array('id' => (int) $id));
+		}
+		
+		public function findAlbumByUser($id) {
+			
+			$id  = (int) $id;
+			$rowset = $this->tableGateway->select(array('id_user' => $id));
+			$row = $rowset->current();
+			if (!$row) {
+				throw new \Exception("Could not find row $id");
+			}
+			return $row;
 		}
 	}

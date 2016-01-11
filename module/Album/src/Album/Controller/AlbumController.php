@@ -14,7 +14,9 @@
 		public function indexAction()
 	    {
 	         return new ViewModel(array(
-	             'albums' => $this->getAlbumTable()->fetchAll(),
+	             //'albums' => $this->getAlbumTable()->fetchAll(),
+	             
+	         		'albums' => $this->getAlbumTable()->findByUser(1),
 	         ));
 	    }
 	
