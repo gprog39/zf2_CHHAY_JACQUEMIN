@@ -20,11 +20,10 @@
 		}
 
 
-		public function findByUser($id_user)
+		public function findUserAlbums($id_user)
 		{
-			
 			//print_r($user)
-			$resultSet = $this->tableGateway->select($where = "id_user = $id_user");
+			$resultSet = $this->tableGateway->select($where = "users_id = $id_user");
 			
 			return $resultSet;
 		}

@@ -9,15 +9,23 @@
 	
 	class AlbumController extends AbstractActionController
 	{
-		protected $albumTable;
-		
-		public function indexAction()
-	    {
-	         return new ViewModel(array(
-	             //'albums' => $this->getAlbumTable()->fetchAll(),
-	             
-	         		'albums' => $this->getAlbumTable()->findByUser(1),
-	         ));
+		protected $authservice;
+	
+	    public function getAuthService() {
+	        if (!$this->authservice) {
+	            $this->authservice = $this->getServiceLocator()
+	                    ->get('AuthService');
+	        }
+	
+	        return $this->authservice;
+	    }
+
+	    public function indexAction() {
+	
+	        $user = $this->getAuthService()->getStorage()->read();
+	        return new ViewModel(array(
+	            'albums' => $this->getAlbumTable()->findUserAlbums($user->id), //fetchAll() au départ
+	        ));
 	    }
 	
 		public function addAction()
