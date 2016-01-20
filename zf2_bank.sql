@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.3.1
+-- version 4.5.0.2
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 20 Janvier 2016 à 16:43
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Host: localhost
+-- Generation Time: Jan 20, 2016 at 05:00 
+-- Server version: 10.0.17-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `zf2_bank`
+-- Database: `zf2_bank`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `album`
+-- Table structure for table `album`
 --
 
 CREATE TABLE `album` (
@@ -36,7 +36,29 @@ CREATE TABLE `album` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `session`
+-- Table structure for table `Assurance`
+--
+
+CREATE TABLE `Assurance` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Conseiller`
+--
+
+CREATE TABLE `Conseiller` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `session`
 --
 
 CREATE TABLE `session` (
@@ -50,7 +72,7 @@ CREATE TABLE `session` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -60,7 +82,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
@@ -68,48 +90,70 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (2, 'francis', 'a533a31c93c4d073cb31ba5c8aafad89');
 
 --
--- Index pour les tables exportées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `album`
+-- Indexes for table `album`
 --
 ALTER TABLE `album`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_album_users_idx` (`users_id`);
 
 --
--- Index pour la table `session`
+-- Indexes for table `Assurance`
+--
+ALTER TABLE `Assurance`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `Conseiller`
+--
+ALTER TABLE `Conseiller`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `session`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`,`name`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `album`
+-- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `Assurance`
+--
+ALTER TABLE `Assurance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `Conseiller`
+--
+ALTER TABLE `Conseiller`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `album`
+-- Constraints for table `album`
 --
 ALTER TABLE `album`
   ADD CONSTRAINT `fk_album_users` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
